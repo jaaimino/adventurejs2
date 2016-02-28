@@ -37,28 +37,6 @@ You can register a new account or sign in with the following credentials: foo@ba
 
 Note: `The initData.js` script will populate Mongo DB and ElasticSearch with some data so you can use the application.
 
-#### Screen shots
-
-###### Home page
-
-![home](https://github.com/benas/gamehub.io/raw/master/site/home.jpg)
-
-###### Playing chess in real time
-
-![play](https://github.com/benas/gamehub.io/raw/master/site/play.jpg)
-
-###### Watch live game
-
-![tv](https://github.com/benas/gamehub.io/raw/master/site/tv.jpg)
-
-###### Search a game
-
-![search](https://github.com/benas/gamehub.io/raw/master/site/search.jpg)
-
-###### Real time monitoring dashboard
-
-![monitor](https://github.com/benas/gamehub.io/raw/master/site/monitor.jpg)
-
 #### RESTful API
 
 ##### User details: GET /api/user/:name
@@ -88,12 +66,6 @@ Example: /api/game/5456476066be11c704942161
     "result":"1-0"
 }
 ```
-
-# Contribution
-
-There are probably some points of improvement in the application design, structure or code.
-
-If you believe there is a best practice I have not followed, please let me know by opening an issue on the issue tracker. Pull requests are welcome!
 
 # License
 
