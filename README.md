@@ -1,7 +1,4 @@
-# About GameHub.io
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/benas/gamehub.io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-GameHub.io is an attempt to make a real-time multi player gaming server using the following technologies:
+# About AdventureJS 2
 
 ### Client side
 
@@ -18,64 +15,6 @@ GameHub.io is an attempt to make a real-time multi player gaming server using th
 * <a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a> to easily render HTML templates
 * <a href="http://www.mongodb.org/" target="_blank">Mongo DB</a> along with <a href="http://mongoosejs.com/" target="_blank">Mongoose</a>
 * <a href="http://www.elasticsearch.org/" target="_blank">ElasticSearch</a> server for (near) real time game indexing and lookup</a>
-
-# Goals
-
-The main goal of GameHub.io is to provide a non trivial web application serving as an example of gaming server using the aforementioned technologies.
-
-Here is a list of core features:
-
-* Application structure and setup
-* User authentication and registration process (/login & /register)
-* Real time multi player gaming logic (See gaming logic section)
-* RESTful API (/api)
-* Real time monitoring dashboard (/monitor)
-* "TV" page to broadcast any real time content (/tv)
-* Real time game indexing and searching using ElasticSearch (/search)
-
-# Architecture
-
-![architecture](https://github.com/benas/gamehub.io/raw/master/site/gamehub.jpg)
-
-# Gaming logic
-
-GameHub.io uses a simple gaming sequence through Socket.io that works for 2+ players. Here is a simplified diagram of most relevant events:
-
-![gamehub.io](https://github.com/benas/gamehub.io/raw/master/site/chesshub-sequence-diagram.jpg)
-
-1. Each player can create a game by sending a 'create-game' event to the server
-2. The server creates a new game and replies to the player with a randomly generated token for the game
-3. The player sends this token to other players and waits for them to join the game
-4. Others players join the game by sending a 'join-game' event to the server
-5. Once all players joined the game, the server joins players sockets to the same socket.io room
-6. At this point, the game starts: depending on the game nature, each player can send a random number of events that will be broadcast to other players.
-7. When the game is over, each player is notified and sockets leave the game room
-
-# Use case: ChessHub.io
-
-### Introduction
-
-ChessHub.io is a real time multi player chess server that serves as a sample of how to reuse GameHub.io core features.
-
-The goal of ChessHub.io is not to provide a fully featured web application to play chess online.
-
-Even though the application is related to chess, it is easy to change the domain model along with application logic and keep/adapt the application structure.
-
-### Why Chess?
-
-* Because it is a good use case for real time multi player gaming
-* Because every time you look for a real time application example on the web, you end up on chat applications, so I decided to change the landscape :-)
-* Because I am a chess junkie!
-
-### Credits
-
-Chess logic on the client side uses the excellent <a href="https://github.com/jhlywa/chess.js" target="_blank">Chess.js</a> and <a href="http://chessboardjs.com/" target="_blank">Chessboard.js</a> libraries.
-
-### Live demo
-
-[http://chesshub-benas.rhcloud.com/](http://chesshub-benas.rhcloud.com/)
-
-### Build and Run the application
 
 #### Prerequisites
 
