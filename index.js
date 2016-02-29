@@ -1,11 +1,19 @@
-var app = require('express')();
+var express = require('express');
 var mongoose = require('mongoose');
+var path = require('path');
+
+var app = express();
+
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.set('port', process.env.PORT || 3000);
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/test');
+
+mongoose.connection.on('error', function (err) {
+    console.error('MongoDB Connection Error. Please make sure MongoDB is running. -> ' + err);
+});
 
 function databaseStuff(){
 	var Cat = mongoose.model('Cat', { name: String });
