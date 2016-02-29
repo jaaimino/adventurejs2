@@ -9,8 +9,8 @@ module.exports = function (app, mongoose) {
             },
             auto_reconnect:true
         };
-        mongoose.connect(process.env.MONGOLAB_URI, options);
-        console.log(process.env.MONGOLAB_URI);
+        mongoose.connect("mongodb://heroku_xkng4vtl:445910l8n0lufhe28l689pmu0h@ds019038.mlab.com:19038/heroku_xkng4vtl", options);
+        //console.log(process.env.MONGOLAB_URI);
         //mongoose.connect(config.get('chesshub.db'), options);
     };
     connect();
