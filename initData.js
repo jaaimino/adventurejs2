@@ -59,7 +59,7 @@ User.findOne({email: 'foo@bar.org'} ,function (err, user) {
 /* Init elastic search server */
 
 var elasticsearch = require('elasticsearch');
-var connectionString = "http://"+config.get('chesshub.es.host')+":"+config.get('chesshub.es.port');
+var connectionString = process.env.SEARCHBOX_URL;
 var client = new elasticsearch.Client({
 host: connectionString,
 log: 'trace'
