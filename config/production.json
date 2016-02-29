@@ -1,6 +1,6 @@
 {
 "chesshub": {
-        "db": "process.env.MONGOLAB_URI",
+        "db": "",
         "es":{
                  "host": "localhost",
                  "port": "9200"

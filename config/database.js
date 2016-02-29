@@ -9,7 +9,8 @@ module.exports = function (app, mongoose) {
             },
             auto_reconnect:true
         };
-        mongoose.connect(config.get('chesshub.db'), options);
+        mongoose.connect(process.env.MONGOLAB_URI, options);
+        //mongoose.connect(config.get('chesshub.db'), options);
     };
     connect();
 
