@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 //Connect to mongoose
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/test');
@@ -48,10 +48,23 @@ function databaseStuff(){
 	});
 }
 
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/public/index.html');
+// All undefined asset or api routes should return a 404
+app.route('/:url(api|auth|components|app|bower_components|assets)/*')
+.get(function(req, res){
+	res.status(404).end('error');
 });
 
+// All other routes should redirect to the index.html
+app.route('/*')
+.get(function(req, res) {
+  res.sendfile(__dirname + '/client/index.html');
+});
+
+app.get('/', function(req, res){
+	res.sendFile(__dirname + '/client/index.html');
+});
+
+//Socket io stuff
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
@@ -66,6 +79,7 @@ nsp.on('connection', function(socket){
   });
 });
 
+//Start http server
 http.listen(app.get('port'), function(){
   console.log('listening on *:'+app.get('port'));
 });
