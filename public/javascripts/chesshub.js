@@ -17,7 +17,8 @@ $( document ).ready(function() {
     }
 
     // socket used for real time games
-    var socket = io(window.location.hostname + '/', { query: 'user=' + username });
+    var url = location.origin.replace(/^http/, 'socket.io');
+    var socket = io(url, { query: 'user=' + username });
 
     //socket used to broadcast live games on tv page
     var tvSocket = io(window.location.hostname + '/tv');
