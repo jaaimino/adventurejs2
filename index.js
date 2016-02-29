@@ -7,8 +7,7 @@ app.set('port', process.env.PORT || 3000);
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/test');
 
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html');
+function databaseStuff(){
 	var Cat = mongoose.model('Cat', { name: String });
 
 	var kitty = new Cat({ name: 'Zildjian' });
@@ -16,8 +15,11 @@ app.get('/', function(req, res){
 	  if (err) // ...
 	  console.log('meow');
 	});
-});
+}
 
+app.get('/', function(req, res){
+	res.sendFile(__dirname + 'public/index.html');
+});
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){

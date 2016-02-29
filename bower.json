@@ -1,0 +1,23 @@
+{
+  "name": "node-ws-test",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "jaaimino <jacobaimino@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jaaimino/adventurejs2",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
