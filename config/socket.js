@@ -8,6 +8,12 @@ module.exports = function (server) {
     io.set('transports', ['xhr-polling']);
     io.set('polling duration', 10);
 
+    // Set our transports
+    io.configure(function () { 
+      io.set("transports", ["xhr-polling"]); 
+      io.set("polling duration", 20); 
+    });
+
     /*
      * live show of top rated game
      */
