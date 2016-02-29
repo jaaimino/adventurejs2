@@ -8,17 +8,12 @@ module.exports = function (server) {
     io.set('transports', ['xhr-polling']);
     io.set('polling duration', 10);
 
-    io.configure(function () {
-      io.set("transports", ["xhr-polling"]);
-      io.set("polling duration", 10);
-    });
-
     /*
      * live show of top rated game
      */
     var topRatedGame = new chess.Chess(); // fake game (playing random moves). It should be a real game being played on the server
 
-    var tv = io.connect('/tv'); // Socket to broadcast top rated game moves to index and tv pages
+    var tv = io.of('/tv'); // Socket to broadcast top rated game moves to index and tv pages
 
     setInterval(function() {
         var possibleMoves = topRatedGame.moves();
@@ -46,7 +41,7 @@ module.exports = function (server) {
     /*
      * Socket to use to broadcast monitoring events
      */
-    var monitor = io.connect('/monitor');
+    var monitor = io.of('/monitor');
     monitor.on('connection', function(socket){
         socket.emit('update', {nbUsers: users, nbGames: Object.keys(games).length});
     });
