@@ -6,6 +6,7 @@
     "url": "https://github.com/heroku-examples/node-ws-test.git"
   },
   "dependencies": {
+    "bower": "^1.7.7",
     "express": "^4.4.5",
     "mongoose": "^4.4.5",
     "socket.io": "^1.4.5"
@@ -14,6 +15,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
