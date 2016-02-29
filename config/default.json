@@ -1,6 +1,6 @@
 {
     "chesshub": {
-        "db": "mongodb://localhost/test",
+        "db": "mongodb://<dbuser>:<dbpassword>@ds019038.mlab.com:19038/heroku_xkng4vtl",
 	"es":{
 		 "host": "localhost",
 		 "port": "9200"

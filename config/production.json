@@ -3,7 +3,7 @@
         "db": "mongodb://testuser:testtest@ds019038.mlab.com:19038/heroku_xkng4vt1",
         "es":{
                  "host": "localhost",
-                 "port": "9200"
+                 "port": "19038"
     }
     }
 }
