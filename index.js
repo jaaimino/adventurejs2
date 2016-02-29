@@ -7,16 +7,15 @@ app.set('port', process.env.PORT || 3000);
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/test');
 
-var Cat = mongoose.model('Cat', { name: String });
-
-var kitty = new Cat({ name: 'Zildjian' });
-kitty.save(function (err) {
-  if (err) // ...
-  console.log('meow');
-});
-
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/index.html');
+	var Cat = mongoose.model('Cat', { name: String });
+
+	var kitty = new Cat({ name: 'Zildjian' });
+	kitty.save(function (err) {
+	  if (err) // ...
+	  console.log('meow');
+	});
 });
 
 
