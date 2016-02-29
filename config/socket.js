@@ -5,10 +5,8 @@ module.exports = function (server) {
     var chess =  require('chess.js');
 
     //Heroku
-    io.configure(function () {  
-      io.set("transports", ["xhr-polling"]); 
-      io.set("polling duration", 10); 
-    });
+    io.set('transports', ['xhr-polling']);
+    io.set('polling duration', 10);
 
     /*
      * live show of top rated game
