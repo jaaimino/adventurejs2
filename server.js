@@ -35,9 +35,11 @@ app.use(express.static(path.join(__dirname, 'client')));
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/test');
 
 // bootstrap data models
+/*
 fs.readdirSync(__dirname + '/models').forEach(function (file) {
     if (~file.indexOf('.js')) require(__dirname + '/models/' + file);
 });
+*/
 
 mongoose.connection.on('error', function (err) {
     console.error('MongoDB Connection Error. Please make sure MongoDB is running. -> ' + err);
