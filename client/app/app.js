@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('adventurejs2', [
-  'ui.router'
+  'ui.router',
+  'ngResource',
+  'ngCookies'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
