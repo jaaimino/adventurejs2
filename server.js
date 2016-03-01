@@ -34,6 +34,11 @@ app.use(express.static(path.join(__dirname, 'client')));
 //Connect to mongoose
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/test');
 
+// bootstrap data models
+fs.readdirSync(__dirname + '/models').forEach(function (file) {
+    if (~file.indexOf('.js')) require(__dirname + '/models/' + file);
+});
+
 mongoose.connection.on('error', function (err) {
     console.error('MongoDB Connection Error. Please make sure MongoDB is running. -> ' + err);
 });
@@ -48,21 +53,7 @@ function databaseStuff(){
 	});
 }
 
-// All undefined asset or api routes should return a 404
-app.route('/:url(api|auth|components|app|bower_components|assets)/*')
-.get(function(req, res){
-	res.status(404).end('error');
-});
-
-// All other routes should redirect to the index.html
-app.route('/*')
-.get(function(req, res) {
-  res.sendfile(__dirname + '/client/index.html');
-});
-
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/client/index.html');
-});
+require('./routes')(app);
 
 //Socket io stuff
 io.on('connection', function(socket){

@@ -29,17 +29,11 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="app.js"></script>
+    <!-- App -->
+    <script src="app/app.js"></script>
+    <script src="app/main/main.controller.js"></script>
+    <script src="app/main/main.js"></script>
     <script>
-      var socket = io('/test');
-      $('#chatForm').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
     </script>
 </body>
 </html>
