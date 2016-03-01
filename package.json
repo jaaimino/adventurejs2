@@ -4,6 +4,7 @@
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "bower": "^1.7.7",
     "composable-middleware": "^0.3.0",
     "compression": "^1.6.1",
     "connect-mongo": "^1.1.0",
