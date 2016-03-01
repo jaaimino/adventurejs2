@@ -1,20 +1,27 @@
 'use strict';
 
-angular.module('adventurejs2')
-  .controller('MainCtrl', function ($scope, $http) {
-      $scope.messages = [];
-      var socket = io('/test');
-      $scope.addThing = function(){};
+angular.module('demoApp')
+  .controller('MainCtrl', function ($scope, $http, socket) {
+    $scope.awesomeThings = [];
 
-      socket.on("connect", function(){
-          $scope.addThing = function() {
-          socket.emit('chat message', $scope.message);
-          $scope.message = "";
-        };
-        socket.on('chat message', function(msg){
-          $scope.$apply(function(){
-            $scope.messages.push(msg);
-          });
-        });
-      });
+    $http.get('/api/things').success(function(awesomeThings) {
+      $scope.awesomeThings = awesomeThings;
+      socket.syncUpdates('thing', $scope.awesomeThings);
+    });
+
+    $scope.addThing = function() {
+      if($scope.newThing === '') {
+        return;
+      }
+      $http.post('/api/things', { name: $scope.newThing });
+      $scope.newThing = '';
+    };
+
+    $scope.deleteThing = function(thing) {
+      $http.delete('/api/things/' + thing._id);
+    };
+
+    $scope.$on('$destroy', function () {
+      socket.unsyncUpdates('thing');
+    });
   });

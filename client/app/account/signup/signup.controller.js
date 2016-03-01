@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adventurejs2')
+angular.module('demoApp')
   .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
