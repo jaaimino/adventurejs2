@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('demoApp')
+angular.module('adventureJS')
   .factory('User', function ($resource) {
     return $resource('/api/users/:id/:controller', {
       id: '@_id'

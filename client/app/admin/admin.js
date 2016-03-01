@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('demoApp')
+angular.module('adventureJS')
   .config(function ($stateProvider) {
     $stateProvider
       .state('admin', {

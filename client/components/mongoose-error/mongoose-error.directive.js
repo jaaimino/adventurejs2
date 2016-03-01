@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('demoApp')
+angular.module('adventureJS')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',
