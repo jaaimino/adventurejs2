@@ -4,21 +4,21 @@
 
 'use strict';
 
-var session = require('./session.model');
+var session = require('./play.model');
 
 exports.register = function(socket) {
-  session.schema.post('save', function (doc) {
+  play.schema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  session.schema.post('remove', function (doc) {
+  play.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('session:save', doc);
+  socket.emit('play:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('session:remove', doc);
+  socket.emit('play:remove', doc);
 }

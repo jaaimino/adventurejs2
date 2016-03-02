@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./session.controller');
+var controller = require('./play.controller');
 var auth = require('../../auth/auth.service');
 
 var router = express.Router();
@@ -15,7 +15,7 @@ router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
 //Session Messages
-router.post('/:id/messages/', controller.createSessionMessage);
-router.get('/:id/messages/', controller.sessionMessages);
+router.post('/:id/messages/', controller.createPlayMessage);
+router.get('/:id/messages/', controller.playMessages);
 
 module.exports = router;

@@ -7,14 +7,14 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
-var Session = require('../api/session/session.model');
+var Play = require('../api/play/play.model');
 
-Session.find({}).remove();
+Play.find({}).remove();
 
-var session = new Session();
-session.save();
+var play = new Play();
+play.save();
 
-console.log(session._id);
+console.log(play._id);
 
 User.find({}).remove(function() {
   User.create({
