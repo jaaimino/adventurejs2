@@ -9,7 +9,7 @@ angular.module('adventureJS')
 
     $scope.chatmessages = [];
 
-    $http.get('/api/session/'+$stateParams.sessionId+'/messages').success(function(chatmessages) {
+    $http.get('/api/play/'+$stateParams.sessionId+'/messages').success(function(chatmessages) {
       $scope.chatmessages = chatmessages;
       socket.syncUpdates('message', $scope.chatmessages);
     });
@@ -18,7 +18,7 @@ angular.module('adventureJS')
       if($scope.newMessage === '') {
         return;
       }
-      $http.post('/api/session/'+$stateParams.sessionId+'/messages/', {
+      $http.post('/api/play/'+$stateParams.sessionId+'/messages/', {
         session: $stateParams.sessionId,
         user: Auth.getCurrentUser(), message: $scope.newMessage
       });
@@ -26,7 +26,7 @@ angular.module('adventureJS')
     };
 
     $scope.deleteMessage = function(message) {
-      $http.delete('/api/session/'+$stateParams.sessionId+'/messages/' + message._id);
+      $http.delete('/api/play/'+$stateParams.sessionId+'/messages/' + message._id);
     };
 
     $scope.$on('$destroy', function () {
