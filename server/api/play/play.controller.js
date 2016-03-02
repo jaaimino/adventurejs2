@@ -23,8 +23,8 @@ exports.index = function(req, res) {
 
 // Get list of messages in a play
 exports.playMessages = function(req, res) {
-  var playId = req.params.id;
-  Message.find({play: playId},function (err, messages) {
+  var sessionId = req.params.id;
+  Message.find({play: sessionId},function (err, messages) {
     if(err) { return handleError(res, err); }
     return res.json(200, messages);
   });
