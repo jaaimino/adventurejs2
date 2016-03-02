@@ -24,9 +24,9 @@ exports.index = function(req, res) {
 // Get list of messages in a play
 exports.playMessages = function(req, res) {
   var playId = req.params.id;
-  Message.find({session: playId},function (err, messages) {
+  Message.find({session: playId}).populate('user').exec(function(err, messages){
     if(err) { return handleError(res, err); }
-    return res.json(200, messages);
+    return res.status(200).json(messages);
   });
 };
 
