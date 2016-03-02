@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('adventureJS')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Auth) {
+
+    $scope.isAdmin = Auth.isAdmin;
+
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {

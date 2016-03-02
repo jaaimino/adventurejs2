@@ -1,29 +1,37 @@
 'use strict';
 
 angular.module('adventureJS')
-  .controller('PlayController', function ($scope, $http, $stateParams, socket) {
+  .controller('PlayController', function ($scope, $http, $stateParams, socket, Auth) {
     console.log($stateParams.sessionId);
 
-    $scope.awesomeThings = [];
+    //Check logged in
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
+    $scope.chatmessages = [];
+
+    $http.get('/api/session/'+$stateParams.sessionId+'/messages').success(function(chatmessages) {
+      $scope.chatmessages = chatmessages;
+      socket.syncUpdates('message', $scope.chatmessages);
     });
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
+    $scope.addMessage = function() {
+      if($scope.newMessage === '') {
         return;
       }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
+      $http.post('/api/session/'+$stateParams.sessionId+'/messages/', {
+        session: $stateParams.sessionId,
+        user: Auth.getCurrentUser(), message: $scope.newMessage
+      });
+      $scope.newMessage = '';
     };
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+    $scope.deleteMessage = function(message) {
+      $http.delete('/api/session/'+$stateParams.sessionId+'/messages/' + message._id);
     };
 
     $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('thing');
+      socket.unsyncUpdates('message');
+      socket.unsyncUpdates('session');
     });
+
   });

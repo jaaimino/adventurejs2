@@ -15,7 +15,8 @@ angular.module('adventureJS')
         })
         .then( function() {
           // Logged in, redirect to home
-          $location.path('/');
+          $scope.user = Auth.getCurrentUser()._id;
+          $location.path('/channels');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
